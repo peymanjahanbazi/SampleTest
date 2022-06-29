@@ -1,14 +1,23 @@
 ﻿namespace Store;
 
-public class PriceComparator
+public static class PriceComparator
 {
-    public (List<Entity> NotChangedItems, List<Entity> DeletedItems, List<Entity> NewItems)
+    public static (List<Entity> NotChangedItems, List<Entity> DeletedItems, List<Entity> NewItems)
         Compare(List<Entity> yesterdayItems, List<Entity> todayItems)
     {
+        if (yesterdayItems is null)
+        {
+            throw new ArgumentNullException(nameof(yesterdayItems));
+        }
+
+        if (todayItems is null)
+        {
+            throw new ArgumentNullException(nameof(todayItems));
+        }
+
         List<Entity> notChangedItems = new();
         List<Entity> deletedItems = new();
         List<Entity> newItems = new();
-        IComparer<Entity> c;
         yesterdayItems.Sort((x, y) =>
         {
             return x.EntityId.CompareTo(y.EntityId);

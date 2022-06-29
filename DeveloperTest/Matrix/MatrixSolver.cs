@@ -2,7 +2,12 @@
 
 public class MatrixSolver
 {
-    private const int boxSize = 3;
+    public MatrixSolver(int boxSize = 3)
+    {
+        this.boxSize = boxSize;
+    }
+
+    private readonly int boxSize;
 
     public (int row, int col) Solve(byte[,] matrix)
     {
@@ -32,11 +37,8 @@ public class MatrixSolver
         return (bestRow, bestCol);
     }
 
-    public int Count { get; set; }
-
     private bool AnalyseBox(byte[,] matrix, int startRow, int startCol)
     {
-        Count++;
         for (int i = startRow; i < startRow + boxSize; i++)
         {
             for (int j = startCol; j < startCol + boxSize; j++)

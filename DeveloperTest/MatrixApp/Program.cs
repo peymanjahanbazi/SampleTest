@@ -3,12 +3,11 @@
 byte[,] matrix = GenerateMatrix();
 
 MatrixSolver solver = new();
-var result = solver.Solve(matrix);
-Console.WriteLine(result);
+var (row, col) = solver.Solve(matrix);
+Console.WriteLine($"row = {row}, col = {col}");
 
-byte[,] GenerateMatrix()
+static byte[,] GenerateMatrix(int size = 100)
 {
-    int size = 100;
     byte[,] matrix = new byte[size, size];
     for (int i = 0; i < size; i++)
     {
@@ -24,6 +23,5 @@ byte[,] GenerateMatrix()
             }
         }
     }
-
     return matrix;
 }
